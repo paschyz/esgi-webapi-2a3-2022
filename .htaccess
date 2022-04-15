@@ -1,2 +1,11 @@
-# Rediriger toutes les requêtes aux fichiers et dossiers qui n'existent pas
-# Vers le fichier index.php?route=...
+# Active la réécriture d'URL
+RewriteEngine on
+
+# Lorsqu'un fichier n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Lorsqu'un dossier n'existe pas
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger la requête vers le fichier index.php avec la route associée
+RewriteRule ^(.*)$ /esgi-webapi-2a3-2022/index.php?route=$1 [L,QSA]
