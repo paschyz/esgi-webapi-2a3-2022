@@ -9,3 +9,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 # Rediriger la requête vers le fichier index.php avec la route associée
 RewriteRule ^(.*)$ /esgi-webapi-2a3-2022/index.php?route=$1 [L,QSA]
+
