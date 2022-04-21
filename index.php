@@ -19,4 +19,13 @@ error_reporting(E_ALL);
  */
 $route = isset($_REQUEST["route"]) ? $_REQUEST["route"] : "undefined";
 
-echo $route;
+$method = $_SERVER["REQUEST_METHOD"];
+
+if ($route === "users") {
+    if ($method === "GET") {
+        require __DIR__ . "/controllers/users.php";
+        die();
+    }
+}
+
+echo "Not found";
