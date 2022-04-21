@@ -16,14 +16,70 @@ error_reporting(E_ALL);
  * La route ré-écrite via la règle de ré-écriture d'URL du fichier .htaccess
  * @see https://www.php.net/manual/en/language.operators.comparison.php
  * @see https://www.php.net/manual/en/function.isset.php
+ * @see https://www.php.net/manual/en/reserved.variables.request.php
  */
 $route = isset($_REQUEST["route"]) ? $_REQUEST["route"] : "undefined";
 
+/**
+ * Récupère la méthode HTTP de la requête faite au serveur
+ * @see https://www.php.net/manual/en/reserved.variables.server.php
+ */
 $method = $_SERVER["REQUEST_METHOD"];
 
 if ($route === "users") {
     if ($method === "GET") {
-        require __DIR__ . "/controllers/users.php";
+        /**
+         * Inclu le fichier et lève une erreur si le chemin est introuvable
+         * @see https://www.php.net/manual/en/function.require.php
+         */
+        require __DIR__ . "/controllers/users/get.php";
+
+        /**
+         * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
+         * @see https://www.php.net/manual/en/function.die.php
+         */
+        die();
+    }
+
+    if ($method === "POST") {
+        /**
+         * Inclu le fichier et lève une erreur si le chemin est introuvable
+         * @see https://www.php.net/manual/en/function.require.php
+         */
+        require __DIR__ . "/controllers/users/post.php";
+
+        /**
+         * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
+         * @see https://www.php.net/manual/en/function.die.php
+         */
+        die();
+    }
+
+    if ($method === "PATCH") {
+        /**
+         * Inclu le fichier et lève une erreur si le chemin est introuvable
+         * @see https://www.php.net/manual/en/function.require.php
+         */
+        require __DIR__ . "/controllers/users/patch.php";
+
+        /**
+         * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
+         * @see https://www.php.net/manual/en/function.die.php
+         */
+        die();
+    }
+
+    if ($method === "DELETE") {
+        /**
+         * Inclu le fichier et lève une erreur si le chemin est introuvable
+         * @see https://www.php.net/manual/en/function.require.php
+         */
+        require __DIR__ . "/controllers/users/delete.php";
+
+        /**
+         * Met fin à l'exécution du script à l'endroit où cette fonction est appelée
+         * @see https://www.php.net/manual/en/function.die.php
+         */
         die();
     }
 }
